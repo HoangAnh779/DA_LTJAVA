@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Layout</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div>
+    <div class="navbar-logo">
+      <a href="/products/home" style="text-decoration: none"><img src="https://phuclong.com.vn/images/logo_1.png" alt=""
+          style="width: 70px; margin: 8px" /></a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/products/home">Trang Chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/products">Sản Phẩm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/products/drinks">Thức Uống</a>
+            </li>
+            <li class="nav-items" style="position: relative">
+              <a class="nav-link" aria-current="page">Trà</a>
+              <ul class="subnav">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/products/teabox">Trà Hộp</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/products/teacans">Trà Lon</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/products/teapackage">Trà Gói</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/products/contact">Liên Hệ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/products/blog">Về Chúng Tôi</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+              <a th:href="@{/products/add}" class="nav-link">Thêm Sản Phẩm Mới</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+              <a th:href="@{/categories/add}" class="nav-link">Thêm Danh Mục Mới</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+              <a th:href="@{/users}" class="nav-link">Danh Sách Người Dùng</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+              <a th:href="@{/products/management}" class="nav-link">Quản Lý</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+            <li class="nav-item d-flex align-items-center" sec:authorize="isAuthenticated()">
+              <span class="navbar-text" sec:authentication="name"></span>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+              <form th:action="@{/logout}" method="post">
+                <button class="btn" type="submit" style="color: #666666">
+                  Đăng Xuất
+                </button>
+              </form>
+            </li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+              <a class="btn" href="/users/login" style="color: #666666">Đăng Nhập</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container" style="max-width: 100%; width: 100%; padding: 0;">
+      <section layout:fragment="content">
+        <!-- Nội dung cụ thể của từng trang sẽ được đặt tại đây -->
+      </section>
+    </div>
+    <div style="background: white">
+      <div class="footer">
+        <div class="footer-content">
+          <div style="width: 70%">
+            <h4><b>Phúc Long</b></h4>
+            <p>
+              Trụ sở chính: Công ty Cổ Phần Phúc Long Heritage - ĐKKD: 0316
+              871719 do sở KHĐT TPHCM cấp lần đầu ngày 21/05/2021
+            </p>
+            <p>
+              SĐT:
+              <a class="contact" href="tel:18006779" style="text-decoration: none">1800 6779</a>
+            </p>
+            <p>
+              Email:
+              <a class="contact" href="mailto: info2@phuclong.masangroup.com"
+                style="text-decoration: none">info2@phuclong.masangroup.com</a>
+            </p>
+          </div>
+
+          <div style="display: flex; justify-content: end; width: 30%; align-items: center;">
+            <img src="https://phuclong.com.vn/images/common/dathongbao.png" alt="logo"
+              style="width: 50%; height: 50%;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    * {
+      color: black;
+    }
+
+    body {
+      background: #fefefe;
+    }
+
+    a {
+      color: black;
+    }
+
+    .navbar-logo {
+      display: flex;
+      justify-content: center;
+      background: white;
+    }
+
+    .navbar-nav .nav-items .subnav {
+      list-style-type: none;
+    }
+
+    .navbar-nav .nav-items:hover .subnav {
+      display: block;
+    }
+
+    .navbar-nav .subnav nav-items:hover a {
+      color: #000;
+      background-color: #ccc;
+    }
+
+    .navbar-nav .subnav {
+      display: none;
+      position: absolute;
+      min-width: 80px;
+      top: 100%;
+      transform: translateX(-12.5%);
+      background-color: #fff;
+      box-shadow: rgba(33, 35, 38, 0.3) 0px 10px 10px -10px;
+      padding: 0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .subnav .nav-item {
+      width: 100%;
+    }
+
+    .subnav .nav-item:hover {
+      background-color: rgb(244, 244, 244);
+    }
+
+    .subnav .nav-link {
+      padding: 0 !important;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .navbar-nav .subnav a {
+      color: #666666;
+      padding: 0 12px;
+      line-height: 38px;
+    }
+
+    .nav-link {
+      color: #666666;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px 20px !important;
+    }
+
+    .btn {
+      font-weight: 700;
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      color: black;
+      background-color: transparent;
+    }
+
+    .navbar-text {
+      color: #666666;
+      font-weight: 700;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .navbar {
+      padding: 0;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+        rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      border-top: 2px #80808038 solid;
+      background: white;
+    }
+
+    .product-title {
+      height: 50px;
+    }
+
+    .product-description {
+      height: 50px;
+    }
+
+    .product-price {
+      font-size: 1.1em;
+      color: #0c713d;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .add-to-cart-btn:hover {
+      color: white !important;
+      background-color: #0c713d;
+    }
+
+    .footer {
+      width: 1300px;
+      margin: 20px auto;
+      margin-bottom: 0;
+      display: flex;
+    }
+
+    .footer-content {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin: 20px;
+    }
+  </style>
+</body>
+
+</html>

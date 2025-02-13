@@ -1,0 +1,116 @@
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <title th:text="${title} ?: 'Products List'">Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <section
+      layout:fragment="content"
+      class="container"
+      style="max-width: 100%; padding: 0;"
+    >
+      <div class="banner">
+        <img
+          src="https://phuclong.com.vn/uploads/banner/a703e1153c5dd9-z5417895221915_378190bb622bae988c1e279477c1676d.jpg"
+          alt=""
+          style="width: 100%;"
+        />
+      </div>
+      <div class="products" style="margin: 100px auto">
+        <div class="panel panel-prod" style="margin: 0">
+          <section class="ss-1 lazy lazy-loaded">
+            <div class="container" style="padding: 0">
+              <div class="row row-1" style="display: flex">
+                <div class="col-sm-12 col-md-6" style="padding: 0">
+                  <div class="item equal">
+                    <img
+                      class="img lazy lazy-loaded"
+                      data-lazy-type="image"
+                      alt="alt"
+                      src="https://phuclong.com.vn/uploads/post/20649d183ca5f1-bannertrangchu.jpg"
+                      style="width: 80%"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-sm-12 col-md-6"
+                  style="
+                    padding: 0;
+                    margin: auto 0;
+                    display: flex;
+                    justify-content: end;
+                  "
+                >
+                  <div class="item equal" style="width: 80%">
+                    <h3 class="title" style="margin: 0; color: #0c713d">
+                      TỪ NHỮNG MẦM TRÀ, CHÚNG TÔI TẠO RA NIỀM ĐAM MÊ
+                    </h3>
+                    <br />
+                    <p style="text-align: justify">
+                      Trải qua hơn 50 năm chắt chiu tinh hoa từ những búp trà
+                      xanh và hạt cà phê thượng hạng cùng mong muốn mang lại cho
+                      khách hàng những trải nghiệm giá trị nhất khi thưởng thức,
+                      Phúc Long liên tục là thương hiệu tiên phong với nhiều ý
+                      tưởng sáng tạo đi đầu trong ngành trà và cà phê. <br />
+                      <br />
+                      Chúng tôi tin rằng từng sản phẩm trà và cà phê sẽ càng
+                      thêm hảo hạng khi được tạo ra từ sự phấn đấu không ngừng
+                      cùng niềm đam mê. Và chính kết nối dựa trên niềm tin, sự
+                      trung thực và tin yêu sẽ góp phần mang đến những nét đẹp
+                      trong văn hóa thưởng trà và cà phê ngày càng bay cao, vươn
+                      xa.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row row-2"
+                style="
+                  display: flex;
+                  margin-top: 50px;
+                  background-image: url('https://phuclong.com.vn/uploads/banner/6313d6d02ac48e-2949308c6b040fcoffeecopy.png');
+                "
+              >
+                <div class="col-sm-6" style="padding: 0; margin: auto 0">
+                  <div class="item text" style="padding-top: 0; width: 80%">
+                    <h3 class="title" style="color: #0c713d">
+                      ĐỘI NGŨ NHÂN VIÊN TRÀN ĐẦY NHIỆT HUYẾT
+                    </h3>
+                    <br />
+                    <p style="text-align: justify">
+                      Trong suốt quá trình hoạt động và phát triển, đội ngũ quản
+                      lý và nhân viên của Phúc Long Coffee &amp; Tea, qua bao
+                      thế hệ, đã cùng nhau xây dựng, nuôi dưỡng niềm đam mê dành
+                      cho trà và cà phê với mong muốn được thử thách bản thân
+                      trong ngành dịch vụ năng động và sáng tạo.
+                    </p>
+                    <p></p>
+                  </div>
+                </div>
+                <div class="col-sm-6" style="padding: 0">
+                  <div class="item" style="display: flex; justify-content: end">
+                    <img
+                      class="img lazy lazy-loaded"
+                      data-lazy-type="image"
+                      alt="alt"
+                      src="https://phuclong.com.vn/uploads/post/024b7d5e73bbb2-8ed98f521583690431954887e772tuyendung1.jpg"
+                      style="width: 80%"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

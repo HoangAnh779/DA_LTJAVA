@@ -1,0 +1,127 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <title th:text="${title} ?: 'Products List'">Drinks</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .search-box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+        }
+
+        .search-button {
+            padding: 10px;
+            background-color: white;
+            color: #0C713D;
+            border-color: #0C713D;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        .search-button:hover {
+            background-color: #0C713D;
+            color: white;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.1em;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .product-image {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .product-category {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <section layout:fragment="content" class="container">
+
+        <div class="search-container">
+            <form action="/products/search" method="get">
+                <input type="text" name="query" class="search-box" placeholder="Search..." >
+                <button type="submit" class="search-button">Tìm</button>
+            </form>
+        </div>
+        <h1 style="text-align: center; margin: 70px;">DRINKS</h1>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col" th:each="product : ${products}">
+                <div class="product-card h-100">
+                    <img th:src="@{${product.thumnail}}" alt="Product Image" class="product-image">
+                    <div class="product-title">
+                        <a th:text="${product.name}" th:href="@{/products/{id}(id=${product.id})}"
+                            class="text-decoration-none"></a>
+                    </div>
+                    <div class="product-description" th:text="${product.description}">Description</div>
+                    <div class="product-price" th:text="${product.price}">Price</div>
+                    <div class="product-category" th:text="${product.category.name}">Category Name</div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <form th:action="@{/cart/add}" method="post" sec:authorize="hasAuthority('USER')"
+                            style="margin: 0 auto;">
+                            <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block"
+                                style="width: 100px; margin-bottom: 10px;">
+                            <input type="hidden" th:value="${product.id}" name="productId"
+                                style="margin-bottom: 10px;" />
+                            <button type="submit" class="btn btn-sm add-to-cart-btn"
+                                style="color: #0C713D; border-color: #0C713D; margin: 0 auto; display: flex;">Add to
+                                Cart</button>
+                        </form>
+                    </div>
+                    <div class="mt-3" sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm"
+                            style="color: orange ">Edit</a>
+                        <a th:href="@{/products/delete/{id}(id=${product.id})}" class="btn btn-sm" style="color: red "
+                            onclick="return confirm('Are you sure?')">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

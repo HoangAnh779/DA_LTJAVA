@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Show Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Include the updated CSS styles here */
+        .product-container {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+            text-align: center; /* Center the text */
+        }
+
+        .product-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-image {
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+        .thumbnail-image {
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: cover;
+            margin: 10px;
+        }
+
+        h1, h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="content" class="container mt-5">
+    <div class="product-container">
+        <h1 class="mb-4">Show Product</h1>
+        <div th:object="${product}">
+            <p><strong>Product ID:</strong> <span th:text="${product.id}"></span></p>
+            <p><strong>Product Name:</strong> <span th:text="${product.name}"></span></p>
+            <h3>Ảnh đại diện</h3>
+            <div class="product-image-container">
+                <img th:src="${product.thumnail}" alt="Product Image" class="product-image">
+            </div>
+            <h3>Danh sách nhiều ảnh thuộc product</h3>
+            <div class="d-flex flex-wrap justify-content-center">
+                <div th:each="image : ${product.images}">
+                    <img th:src="${image.imagePath}" alt="Product Image" class="thumbnail-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

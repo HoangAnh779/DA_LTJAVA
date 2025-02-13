@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <title th:text="${title} ?: 'Your Cart'">Order Confirmation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      .momo-payment {
+        width: 1000px;
+        margin: 10px auto;
+        display: flex;
+        box-shadow: rgba(149, 157, 165, 0.4) 0px 8px 24px;
+        border-radius: 4px;
+      }
+
+      .momo-detail {
+        display: block;
+        padding: 40px 20px;
+      }
+
+      .momo-detail p {
+        color: white;
+        font-size: 20px;
+      }
+
+      .momo-qr {
+        width: 70%;
+        padding: 25px;
+      }
+
+      .btn-info {
+        border-color: transparent;
+      }
+
+      .btn-info:hover {
+        background-color: #247f50c4;
+        border-color: #247f50;
+      }
+
+      .momo-detail-background {
+        display: block;
+        background-color: rgb(166, 56, 124);
+      }
+
+      .momo-payment-detail {
+        display: block;
+      }
+
+      .momo-detail .time {
+        font-size: 25px;
+      }
+
+      .momo-detail div {
+        margin: 20px;
+      }
+
+      .momo-detail p {
+      }
+
+      .momo-detail h3 {
+        color: white;
+        font-size: 16px;
+      }
+
+      .back-button a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        margin: 25px auto;
+      }
+
+      .supplier p {
+        font-size: 16px;
+      }
+
+      .header-momo {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0.5px solid #80808066;
+      }
+
+      .header-momo .logo {
+        margin: 0;
+        padding: 10px 0;
+        width: 75px;
+      }
+
+      .header-momo .logo img {
+        width: 100%;
+      }
+
+      .momo-qr-content .header {
+        font-size: 30px;
+        text-align: center;
+        color: rgb(197, 79, 153);
+        font-weight: 700;
+      }
+
+      .momo-qr-content img {
+        width: 275px;
+        margin: 0 auto;
+        display: flex;
+      }
+
+      .decs {
+        display: flex;
+        margin: 20px auto;
+        width: 400px;
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      .paymen-icon-detail {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <section layout:fragment="content" class="container mt-3">
+      <div class="momo-payment">
+        <div class="momo-detail-background" style="border-radius: 4px">
+          <div class="momo-detail">
+            <div>
+              <h3>Đơn hàng hết hạn sau</h3>
+              <p class="time">29:59</p>
+            </div>
+            <div class="momo-payment-detail supplier">
+              <h3>Nhà cung cấp:</h3>
+              <p style="font-weight: 700; margin-left: 25px">Momo Payment</p>
+            </div>
+            <div class="price">
+              <h3>
+                <i
+                  class="fa fa-money paymen-icon-detail"
+                  aria-hidden="true"
+                ></i>
+                Số tiền
+              </h3>
+              <p class="time" style="margin-left: 25px">95.000đ</p>
+            </div>
+            <div class="detail">
+              <h3>
+                <i
+                  class="fa fa-credit-card paymen-icon-detail"
+                  aria-hidden="true"
+                ></i>
+                Thông tin
+              </h3>
+              <p style="margin-left: 25px">Anh Huy</p>
+              <p style="margin-left: 25px">
+                (anhhuy@exam.com) pays order #0000
+              </p>
+            </div>
+            <div class="name-detail">
+              <h3>
+                <i
+                  class="fa fa-barcode paymen-icon-detail"
+                  aria-hidden="true"
+                ></i>
+                Đơn hàng
+              </h3>
+              <p style="margin-left: 25px">S030203202-1-3</p>
+            </div>
+            <div class="back-button" style="display: flex; margin: auto">
+              <a href="/order/checkout" style="font-weight: 700">
+                <i
+                  class="fa fa-arrow-left paymen-icon-detail"
+                  aria-hidden="true"
+                ></i>
+                Quay lại
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="momo-qr">
+          <div class="header-momo">
+            <div class="logo">
+              <img src="https://th.bing.com/th/id/OIP.ftxXobVdiOrwkCGDs7lG1QAAAA?rs=1&pid=ImgDetMain" alt="Momo" />
+            </div>
+            <div class="logo" style="border-radius: 4px">
+              <img
+                src="https://image.pitchbook.com/Z52Z7RrgtpTmG8e4L8n2NDi0Cj11653984889940_200x200"
+                alt="Momo"/>
+<!--                style="-->
+<!--                  height: 75px;-->
+<!--                  width: auto;-->
+<!--                  margin-left: 4.88px;-->
+<!--                  border-radius: 6px;-->
+<!--                "-->
+
+            </div>
+          </div>
+          <div class="momo-qr-content">
+            <p class="header">Quét mã để thanh toán</p>
+            <img src="https://images.squarespace-cdn.com/content/v1/57372856cf80a1b5bed0f077/e45a83a6-1433-42d4-b00b-4bf97619d7b3/Hum+2go-01.png?format=1000w" alt="Momo" />
+
+            <p class="decs">
+              <i class="fa fa-qrcode" aria-hidden="true"></i>
+              Sử dụng App MoMo hoặc ứng dụng Camera hỗ trợ QR code để quét mã.
+            </p>
+            <p class="loading">
+              <i
+                class="fa fa-spin fa-spinner"
+                aria-hidden="true"
+                style="margin-right: 10px"
+              ></i>
+              Đang chờ quét mã ...
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
